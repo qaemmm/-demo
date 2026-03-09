@@ -1,0 +1,12 @@
+﻿node_modules/
+dist/
+.npm-cache/
+.env
+.env.*
+!.env.example
+*.log
+dev.out
+dev.err
+.DS_Store
+.vscode/
+.claude/
