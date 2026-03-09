@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       type,
       value,
       title,
-      desc,
+      "desc" AS desc,
       TO_CHAR(expire_at, 'MM/DD/YYYY') AS expire,
       used,
       tag
@@ -25,4 +25,3 @@ export default async function handler(req, res) {
 
   return json(res, 200, { coupons: result.rows });
 }
-

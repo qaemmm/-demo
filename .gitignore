@@ -10,3 +10,4 @@ dev.err
 .DS_Store
 .vscode/
 .claude/
+.vercel

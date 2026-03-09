@@ -67,7 +67,7 @@ export default async function handler(req, res) {
             type,
             value,
             title,
-            desc,
+            "desc",
             expire_at,
             tag,
             used,
@@ -108,4 +108,3 @@ export default async function handler(req, res) {
     return json(res, 500, { error: 'Failed to claim birthday reward' });
   }
 }
-

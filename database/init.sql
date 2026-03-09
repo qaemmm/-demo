@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS coupon_wallet (
   type TEXT NOT NULL,
   value TEXT NOT NULL,
   title TEXT NOT NULL,
-  desc TEXT NOT NULL,
+  "desc" TEXT NOT NULL,
   expire_at DATE NOT NULL,
   tag TEXT,
   used BOOLEAN NOT NULL DEFAULT FALSE,
@@ -45,8 +45,8 @@ FROM users
 WHERE phone = '0917-123-4567'
 ON CONFLICT (user_id) DO NOTHING;
 
-INSERT INTO coupon_wallet (user_id, coupon_id, type, value, title, desc, expire_at, tag, used)
-SELECT u.id, c.coupon_id, c.type, c.value, c.title, c.desc, c.expire_at, c.tag, c.used
+INSERT INTO coupon_wallet (user_id, coupon_id, type, value, title, "desc", expire_at, tag, used)
+SELECT u.id, c.coupon_id, c.type, c.value, c.title, c."desc", c.expire_at, c.tag, c.used
 FROM users u
 JOIN (
   VALUES
@@ -54,7 +54,6 @@ JOIN (
     ('C002', 'fixed', '50', '₱50 OFF', 'Min. spend ₱300', DATE '2026-04-15', NULL, FALSE),
     ('C003', 'gift', 'FREE Dessert', 'FREE Dessert', 'With any meal', DATE '2026-03-20', NULL, FALSE),
     ('C004', 'percent', '10', '10% OFF Coffee', 'Coffee only', DATE '2026-02-28', NULL, TRUE)
-) AS c(coupon_id, type, value, title, desc, expire_at, tag, used)
+) AS c(coupon_id, type, value, title, "desc", expire_at, tag, used)
 ON u.phone = '0917-123-4567'
 ON CONFLICT (user_id, coupon_id) DO NOTHING;
-
