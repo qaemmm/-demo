@@ -23,7 +23,7 @@ function App() {
   return (
     <ToastProvider>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<Navigate to="/user/home" replace />} />
         <Route path="/login" element={<LoginPage />} />
 
         <Route path="/user" element={<UserLayout />}>
@@ -49,7 +49,7 @@ function App() {
           <Route path="stores" element={<AdminStoresPage />} />
         </Route>
 
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/user/home" replace />} />
       </Routes>
     </ToastProvider>
   );

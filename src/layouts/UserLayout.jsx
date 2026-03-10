@@ -5,6 +5,8 @@ import LanguageSwitcher from '../components/LanguageSwitcher';
 import LoadingOverlay from '../components/LoadingOverlay';
 import TabBar from '../components/TabBar';
 
+const isDemoBypass = String(import.meta.env.VITE_DEMO_AUTH_BYPASS || '').toLowerCase() === 'true';
+
 function UserLayout() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -19,7 +21,11 @@ function UserLayout() {
       })
       .catch(() => {
         if (!cancelled) {
-          navigate('/login', { replace: true });
+          if (isDemoBypass) {
+            setChecking(false);
+          } else {
+            navigate('/login', { replace: true });
+          }
         }
       });
     return () => {

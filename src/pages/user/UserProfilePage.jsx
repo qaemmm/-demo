@@ -8,6 +8,8 @@ import { useLoading } from '../../hooks/useLoading';
 import { useI18n } from '../../i18n';
 import { formatNumber } from '../../utils/format';
 
+const isDemoBypass = String(import.meta.env.VITE_DEMO_AUTH_BYPASS || '').toLowerCase() === 'true';
+
 function UserProfilePage() {
   const navigate = useNavigate();
   const { t, lang } = useI18n();
@@ -34,6 +36,11 @@ function UserProfilePage() {
       : `${new Date(2026, Number(month || 1) - 1, 1).toLocaleString('en-US', { month: 'long' })} ${Number(day || 1)}`;
 
   const signOut = () => {
+    if (isDemoBypass) {
+      showToast(t('Demo mode: direct access enabled'));
+      navigate('/user/home', { replace: true });
+      return;
+    }
     withLoading(async () => {
       try {
         await logout();
@@ -72,7 +79,7 @@ function UserProfilePage() {
       </div>
 
       <button className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700" onClick={signOut}>
-        {t('Sign Out')}
+        {t(isDemoBypass ? 'Back to Home' : 'Sign Out')}
       </button>
     </section>
   );

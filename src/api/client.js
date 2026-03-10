@@ -1,5 +1,11 @@
+const API_PREFIX = `${import.meta.env.BASE_URL || '/'}api`.replace(/\/+$/, '');
+
+function toApiPath(path) {
+  return `${API_PREFIX}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
 async function request(path, options = {}) {
-  const response = await fetch(path, {
+  const response = await fetch(toApiPath(path), {
     credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
@@ -28,7 +34,7 @@ async function request(path, options = {}) {
 }
 
 export async function loginWithPassword(phone, password) {
-  const data = await request('/api/auth/login', {
+  const data = await request('/auth/login', {
     method: 'POST',
     body: JSON.stringify({ phone, password }),
   });
@@ -36,31 +42,30 @@ export async function loginWithPassword(phone, password) {
 }
 
 export function logout() {
-  return request('/api/auth/logout', { method: 'POST' });
+  return request('/auth/logout', { method: 'POST' });
 }
 
 export async function getCurrentUser() {
-  const data = await request('/api/auth/me', { method: 'GET' });
+  const data = await request('/auth/me', { method: 'GET' });
   return data.user;
 }
 
 export function getMemberSummary() {
-  return request('/api/member/summary', { method: 'GET' });
+  return request('/member/summary', { method: 'GET' });
 }
 
 export function claimBirthdayReward() {
-  return request('/api/member/claim-birthday', { method: 'POST' });
+  return request('/member/claim-birthday', { method: 'POST' });
 }
 
 export async function getCoupons() {
-  const data = await request('/api/coupons', { method: 'GET' });
+  const data = await request('/coupons', { method: 'GET' });
   return data.coupons || [];
 }
 
 export function useCoupon(couponId) {
-  return request('/api/coupons/use', {
+  return request('/coupons/use', {
     method: 'POST',
     body: JSON.stringify({ couponId }),
   });
 }
-

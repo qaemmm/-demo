@@ -7,6 +7,8 @@
 ## 2) Add session secret
 - In Vercel project settings, add:
   - `SESSION_SECRET` = a long random string
+  - `DEMO_AUTH_BYPASS` = `true` (for demo direct access)
+  - `VITE_DEMO_AUTH_BYPASS` = `true` (frontend behavior alignment)
 
 ## 3) Initialize database
 - Run SQL in Vercel SQL editor:
@@ -35,4 +37,3 @@ npm start
 - `POST /api/member/claim-birthday`
 - `GET /api/coupons`
 - `POST /api/coupons/use`
-
