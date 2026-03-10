@@ -35,7 +35,9 @@ function buildCookie(name, value, maxAgeSeconds) {
 }
 
 function isDemoAuthBypassEnabled() {
-  return String(process.env.DEMO_AUTH_BYPASS || '').toLowerCase() === 'true';
+  return String(process.env.DEMO_AUTH_BYPASS || '')
+    .trim()
+    .toLowerCase() === 'true';
 }
 
 export function createSessionToken(userId) {

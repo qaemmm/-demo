@@ -5,7 +5,9 @@ import LanguageSwitcher from '../components/LanguageSwitcher';
 import LoadingOverlay from '../components/LoadingOverlay';
 import TabBar from '../components/TabBar';
 
-const isDemoBypass = String(import.meta.env.VITE_DEMO_AUTH_BYPASS || '').toLowerCase() === 'true';
+const isDemoBypass = String(import.meta.env.VITE_DEMO_AUTH_BYPASS || '')
+  .trim()
+  .toLowerCase() === 'true';
 
 function UserLayout() {
   const location = useLocation();

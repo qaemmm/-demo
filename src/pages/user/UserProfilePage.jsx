@@ -8,7 +8,9 @@ import { useLoading } from '../../hooks/useLoading';
 import { useI18n } from '../../i18n';
 import { formatNumber } from '../../utils/format';
 
-const isDemoBypass = String(import.meta.env.VITE_DEMO_AUTH_BYPASS || '').toLowerCase() === 'true';
+const isDemoBypass = String(import.meta.env.VITE_DEMO_AUTH_BYPASS || '')
+  .trim()
+  .toLowerCase() === 'true';
 
 function UserProfilePage() {
   const navigate = useNavigate();
