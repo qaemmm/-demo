@@ -69,6 +69,12 @@ function UserProfilePage() {
         <p className="text-xl font-bold text-slate-900">{formatNumber(summary.points)}</p>
       </div>
 
+      {/*
+        Demo note:
+        Hide the language/chinese-entry card for now.
+        Keep code here in case we need to restore this block later.
+      */}
+      {/*
       <div className="card p-4">
         <p className="text-sm text-slate-500">{t('Language')}</p>
         <p className="text-sm text-slate-700">{t('Need a Chinese UI view for demos?')}</p>
@@ -79,6 +85,7 @@ function UserProfilePage() {
           {t('Open Chinese Screen')}
         </button>
       </div>
+      */}
 
       <button className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm font-semibold text-slate-700" onClick={signOut}>
         {t(isDemoBypass ? 'Back to Home' : 'Sign Out')}
